@@ -5,6 +5,7 @@ import { Sider } from "./sider/Sider";
 import { HeaderView } from "./header/HeaderView";
 import { Breadcrumbs } from "./breadcrumbs/BreadcrumbsView";
 import { FooterView } from "./footer/FooterView";
+import { Header } from "./header/Header";
 
 const { Content, Footer } = Layout;
 
@@ -17,7 +18,7 @@ export function LayoutDefault({ children }: ILayout) {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider />
       <Layout>
-        <HeaderView />
+        <Header />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumbs />
           <div

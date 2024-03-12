@@ -1,5 +1,5 @@
 "use client"
-import { ReactNode, createContext } from "react";
+import { ReactNode, createContext, useEffect } from "react";
 import { useState } from "react";
 
 interface BreadcrumbsContext {
@@ -15,6 +15,11 @@ interface BreadcrumbsProviderProps {
 
 function BreadcrumbsProvider({ children }: BreadcrumbsProviderProps) {
   const [breadcrumbNames, setBreadcrumbName] = useState<string[]>([]);
+
+  useEffect(() => {
+    const keyPath = window.location.pathname.split("/").filter((e) => e !== "");
+    setBreadcrumbName(keyPath);
+  }, []);
 
   function setBreadcrumbNameFunction(data: string[]) {
     setBreadcrumbName(data);

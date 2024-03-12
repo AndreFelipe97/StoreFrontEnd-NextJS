@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 import { SiderTitle } from './SiderStyles';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { SiderViewProps } from './ISider';
 
 const { Sider } = Layout;
 
@@ -26,26 +27,12 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Relatórios', 'relatorios', <PieChartOutlined />),
+  getItem('Relatórios', '/relatorios', <PieChartOutlined />),
   getItem('Vendas', '/vendas', <ShoppingCartOutlined />),
   getItem('Produtos', 'products', <ProfileOutlined />, [getItem('Estoque', '/produtos/estoque'), getItem('Cadastrar produto', '/produtos/cadastrar')]),
 ];
 
-interface SiderViewProps {
-  collapsed: boolean;
-  isCollapsed: (value: boolean) => void;
-  navigate: AppRouterInstance;
-  configBreadcrumb: (data: string[]) => void
-}
-
-export function SiderView({collapsed, isCollapsed, navigate, configBreadcrumb}: SiderViewProps) {
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    const keyPath = e.key.toString().split("/").filter((e) => e !== "");
-    configBreadcrumb(keyPath);
-    navigate.push(e.key.toString());
-  };
-
+export function SiderView({collapsed, isCollapsed, onClick}: SiderViewProps) {
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={isCollapsed}>
       <SiderTitle>MBV</SiderTitle>
