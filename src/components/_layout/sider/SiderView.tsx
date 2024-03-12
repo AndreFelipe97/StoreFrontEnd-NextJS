@@ -5,6 +5,7 @@ import {
   ProfileOutlined
 } from '@ant-design/icons';
 import { SiderTitle } from './SiderStyles';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 const { Sider } = Layout;
 
@@ -25,21 +26,27 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Relatórios', 'transaction', <PieChartOutlined />),
-  getItem('Vendas', 'sales', <ShoppingCartOutlined />),
-  getItem('Produtos', 'products', <ProfileOutlined />, [getItem('Estoque', 'stock'), getItem('Cadastrar produto', 'add-product')]),
+  getItem('Relatórios', 'relatorios', <PieChartOutlined />),
+  getItem('Vendas', '/vendas', <ShoppingCartOutlined />),
+  getItem('Produtos', 'products', <ProfileOutlined />, [getItem('Estoque', '/produtos/estoque'), getItem('Cadastrar produto', '/produtos/cadastrar')]),
 ];
 
 interface SiderViewProps {
   collapsed: boolean;
   isCollapsed: (value: boolean) => void;
+  navigate: AppRouterInstance;
 }
 
-export function SiderView({collapsed, isCollapsed}: SiderViewProps) {
+export function SiderView({collapsed, isCollapsed, navigate}: SiderViewProps) {
+  const onClick: MenuProps['onClick'] = (e) => {
+    // console.log('click ', e);
+    navigate.push(e.key.toString());
+  };
+
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={isCollapsed}>
       <SiderTitle>MBV</SiderTitle>
-      <Menu defaultSelectedKeys={['1']} mode="inline" items={items} />
+      <Menu defaultSelectedKeys={['1']} mode="inline" items={items} onClick={onClick} />
     </Sider>
   );
 }
