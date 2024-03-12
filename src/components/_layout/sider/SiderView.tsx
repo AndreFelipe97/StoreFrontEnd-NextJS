@@ -35,11 +35,14 @@ interface SiderViewProps {
   collapsed: boolean;
   isCollapsed: (value: boolean) => void;
   navigate: AppRouterInstance;
+  configBreadcrumb: (data: string[]) => void
 }
 
-export function SiderView({collapsed, isCollapsed, navigate}: SiderViewProps) {
+export function SiderView({collapsed, isCollapsed, navigate, configBreadcrumb}: SiderViewProps) {
   const onClick: MenuProps['onClick'] = (e) => {
-    // console.log('click ', e);
+    console.log('click ', e);
+    const keyPath = e.key.toString().split("/").filter((e) => e !== "");
+    configBreadcrumb(keyPath);
     navigate.push(e.key.toString());
   };
 

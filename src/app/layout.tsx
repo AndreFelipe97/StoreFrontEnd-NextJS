@@ -5,6 +5,7 @@ import { themeConfig } from "@/definitions/antd/theme";
 import { LayoutDefault } from "../components/_layout";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "./globals.css";
+import BreadcrumbsProvider from "@/contexts/BreadcrumbsContext";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '700'] });
 
@@ -24,9 +25,11 @@ export default function RootLayout({
       <body className={roboto.className}>
         <ConfigProvider theme={themeConfig }>
           <AntdRegistry>
-            <LayoutDefault>
-              {children}
-            </LayoutDefault>
+            <BreadcrumbsProvider>
+              <LayoutDefault>
+                {children}
+              </LayoutDefault>
+            </BreadcrumbsProvider>
           </AntdRegistry>
         </ConfigProvider>
       </body>
