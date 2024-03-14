@@ -1,5 +1,8 @@
+"use client"
+import { ProductsTable } from "@/components/tables/products/ProductsTable";
+
 export default function ListProducts() {
   return (
-    <h1>Lista de Produtos</h1>
+    <ProductsTable />
   )
 }

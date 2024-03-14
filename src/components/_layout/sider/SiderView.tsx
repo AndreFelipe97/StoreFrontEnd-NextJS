@@ -4,9 +4,10 @@ import {
   ShoppingCartOutlined,
   ProfileOutlined
 } from '@ant-design/icons';
-import { SiderTitle } from './SiderStyles';
+import { SiderTitle, SiderTitleLink } from './SiderStyles';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { SiderViewProps } from './ISider';
+import Link from 'next/link';
 
 const { Sider } = Layout;
 
@@ -35,7 +36,7 @@ const items: MenuItem[] = [
 export function SiderView({collapsed, isCollapsed, onClick}: SiderViewProps) {
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={isCollapsed}>
-      <SiderTitle>MBV</SiderTitle>
+      <SiderTitle><SiderTitleLink href="/relatorios">MBV</SiderTitleLink></SiderTitle>
       <Menu defaultSelectedKeys={['1']} mode="inline" items={items} onClick={onClick} />
     </Sider>
   );

@@ -44,6 +44,17 @@ export const themeConfig: ThemeConfig = {
       triggerBg: "#121214",
       headerBg: "#121214",
     },
+    Table: {
+      colorText: "#FFF",
+      colorLink: "#FFF",
+      borderColor: "#FFF",
+      cellFontSize: 16,
+      headerColor: "#FFF",
+      headerSplitColor: "#FFF",
+    },
+    Pagination: {
+      colorBgContainer: '#FFF',
+    },
     Menu: {
       itemBg: "#121214",
       itemColor: "#FFF",

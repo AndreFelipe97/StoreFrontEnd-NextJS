@@ -1,4 +1,5 @@
 import { styled } from '@stitches/react';
+import Link from 'next/link';
 
 export const SiderTitle = styled('div', {
   color: '#FFF',
@@ -9,8 +10,13 @@ export const SiderTitle = styled('div', {
   backgroundColor: '#121214',
   userSelect: 'none',
   cursor: 'pointer',
+});
+
+export const SiderTitleLink = styled(Link, {
+  color: '#FFF',
   transition: 'color 0.3s',
+
   '&:hover': {
-    color: '#1890ff',
+    color: '#00875F',
   },
 });
