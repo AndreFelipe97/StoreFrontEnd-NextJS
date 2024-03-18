@@ -6,8 +6,11 @@ import { HeaderView } from "./header/HeaderView";
 import { Breadcrumbs } from "./breadcrumbs/BreadcrumbsView";
 import { FooterView } from "./footer/FooterView";
 import { Header } from "./header/Header";
+import { Loading } from "./loading/LoadingView";
+import { useContext, useEffect, useState } from "react";
+import { LoadingContext } from "@/contexts/LoadingContext";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 export function LayoutDefault({ children }: ILayout) {
   const {
@@ -29,7 +32,7 @@ export function LayoutDefault({ children }: ILayout) {
               borderRadius: borderRadiusLG,
             }}
           >
-            {children}
+              { children }
           </div>
         </Content>
         <FooterView />

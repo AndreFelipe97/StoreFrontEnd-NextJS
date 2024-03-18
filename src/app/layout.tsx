@@ -7,6 +7,8 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "./globals.css";
 import BreadcrumbsProvider from "@/contexts/BreadcrumbsContext";
 import TitleProvider from "@/contexts/TitleContext";
+import { Loading } from "@/components/_layout/loading/LoadingView";
+import LoadingProvider from "@/contexts/LoadingContext";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '700'] });
 
@@ -27,9 +29,11 @@ export default function RootLayout({
           <AntdRegistry>
             <TitleProvider>
               <BreadcrumbsProvider>
-                <LayoutDefault>
-                  {children}
-                </LayoutDefault>
+                <LoadingProvider>
+                  <LayoutDefault>
+                    {children}
+                  </LayoutDefault>
+                </LoadingProvider>
               </BreadcrumbsProvider>
             </TitleProvider>
           </AntdRegistry>

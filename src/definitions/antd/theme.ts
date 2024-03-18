@@ -68,5 +68,15 @@ export const themeConfig: ThemeConfig = {
       lastItemColor: "#FFF",
       separatorColor: "#FFF",
     },
+    Form: {
+      labelColor: "#FFF",
+      labelFontSize: 16,
+      labelRequiredMarkColor: "#FFF",
+      colorError: "#F75A68",
+    },
+    Input: {
+      colorBorder: "#FFF",
+      colorText: "#FFF",
+    },
   }
 }
