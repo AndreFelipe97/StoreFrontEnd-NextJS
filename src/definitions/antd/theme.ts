@@ -77,6 +77,16 @@ export const themeConfig: ThemeConfig = {
     Input: {
       colorBorder: "#FFF",
       colorText: "#FFF",
+      colorTextPlaceholder: "#FFF",
     },
+    Card: {
+      colorBgContainer: "#202024",
+      colorText: "#FFF",
+    },
+    Modal: {
+      titleColor: "#FFF",
+      titleFontSize: 24,
+    },
+
   }
 }
