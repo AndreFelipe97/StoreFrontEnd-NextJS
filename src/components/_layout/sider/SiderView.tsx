@@ -1,13 +1,11 @@
 import { Layout, Menu, MenuProps } from 'antd';
 import {
   PieChartOutlined,
-  ShoppingCartOutlined,
+  TransactionOutlined,
   ProfileOutlined
 } from '@ant-design/icons';
 import { SiderTitle, SiderTitleLink } from './SiderStyles';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { SiderViewProps } from './ISider';
-import Link from 'next/link';
 
 const { Sider } = Layout;
 
@@ -29,7 +27,7 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem('Relatórios', '/relatorios', <PieChartOutlined />),
-  getItem('Vendas', '/vendas', <ShoppingCartOutlined />),
+  getItem('Castrar nova transação', '/transacoes/cadastros', <TransactionOutlined />),
   getItem('Produtos', 'products', <ProfileOutlined />, [getItem('Estoque', '/produtos/estoque'), getItem('Cadastrar produto', '/produtos/cadastrar')]),
 ];
 

@@ -79,6 +79,10 @@ export const themeConfig: ThemeConfig = {
       colorText: "#FFF",
       colorTextPlaceholder: "#FFF",
     },
+    Radio: {
+      colorText: "#FFF",
+      colorBorder: "#00875F",
+    },
     Card: {
       colorBgContainer: "#202024",
       colorText: "#FFF",
