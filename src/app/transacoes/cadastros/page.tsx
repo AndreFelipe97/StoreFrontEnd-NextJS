@@ -1,6 +1,9 @@
 "use client"
-import { Button, Col, Form, FormProps, Input, Radio, RadioChangeEvent, Row } from "antd";
-import { useState } from "react";
+import { Form } from "@/components/dataEntries/Form/Form";
+import { Input } from "@/components/dataEntries/inputs/Input";
+import { RadioButton } from "@/components/dataEntries/radioButton/radioButton";
+import { Button, Col, Form as FormAntd, Row } from "antd";
+import { useForm } from "react-hook-form";
 
 type FieldType = {
   title: string;
@@ -9,64 +12,44 @@ type FieldType = {
 };
 
 export default function RegisterTransactions() {
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log('Success:', values);
-  };
-  
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  const { handleSubmit, formState: { errors }, register, control } = useForm<FieldType>();
 
-  const [value, setValue] = useState(1);
-
-  const onChange = (e: RadioChangeEvent) => {
-    console.log('radio checked', e.target.value);
-    setValue(e.target.value);
-  };
+  function onSubmit(data: FieldType) {
+    console.log(data);
+  }
 
   return (
-    <Form
-      name="basic"
-      layout='vertical'
-      wrapperCol={{ span: 24 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item<FieldType>
-        label="Titulo"
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Input label="Titulo"
         name="title"
-        rules={[{ required: true, message: 'Titulo da transação é obrigatório!' }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item<FieldType>
-        label="Valor"
+        rules={[{ required: true, message: 'Titulo da transação é obrigatório!' }]} 
+        control={control}
+        placeholder="Digite o titulo da transação"
+        type="text"
+      />
+      <Input label="Valor"
         name="value"
         rules={[{ required: true, message: 'Valor da transação é obrigatório!' }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item<FieldType>
-        label="Categoria"
+        control={control}
+        placeholder="Digite o valor da transação"
+        type="text"
+      />
+      <Input label="Categoria"
         name="category"
         rules={[{ required: true, message: 'Categoria da transação é obrigatório!' }]}
-      >
-        <Input />
-      </Form.Item>
-      <Radio.Group onChange={onChange} value={value}>
-        <Radio value={1}>Entrada</Radio>
-        <Radio value={2}>Saída</Radio>
-      </Radio.Group>
+        control={control}
+        placeholder="Digite a categoria da transação"
+        type="text"
+      />
+      <RadioButton name="transactionType" control={control} />
 
       <Row justify="end">
         <Col>
-          <Form.Item>
+          <FormAntd.Item>
             <Button type="primary" htmlType="submit" style={{boxShadow: 'none'}}>
               Salvar
             </Button>
-          </Form.Item>
+          </FormAntd.Item>
         </Col>
       </Row>
     </Form>
