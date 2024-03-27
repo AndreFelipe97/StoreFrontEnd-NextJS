@@ -1,43 +1,53 @@
 import { Table } from 'antd';
-import { IReportsTable } from './IReportsTable';
-import { TableTransaction } from './ReportsTableStyles';
+import { IReportsTableView, TransactionsData } from './IReportsTable';
+import { TableTransaction, ValueText } from './ReportsTableStyles';
+import { Key } from 'react';
 
 const { Column } = Table;
 
-const data: IReportsTable[] = [
-  {
-    key: '1',
-    title: 'Coca-cola',
-    value: '8,00',
-    category: 'Bebidas',
-    type: 'whithdraw',
-    date: new Date(),
-  },
-  {
-    key: '2',
-    title: 'Recebimento de cliente',
-    value: '200,00',
-    category: 'Vendas',
-    type: 'deposit',
-    date: new Date(),
-  },
-  {
-    key: '3',
-    title: 'Compras de produtos',
-    value: '1000,00',
-    category: 'Compras',
-    type: 'whithdraw',
-    date: new Date(),
-  },
-];
-
-export function ReportsTableView() {
+export function ReportsTableView({data}: IReportsTableView) {
+  console.log(data);
   return (
     <TableTransaction dataSource={data}>
-      <Column title="Descrição" dataIndex="title" key="title" />
-      <Column title="Valor" dataIndex="value" key="value" />
-      <Column title="Categoria" dataIndex="category" key="category" />
-      <Column title="Data" dataIndex="date" key="date" />
+      <Column
+        title="Descrição"
+        dataIndex="title"
+        key="title"
+      />
+      <Column
+        title="Valor"
+        dataIndex="value"
+        key="value"
+        render={(value: string, record: TransactionsData) => (
+          <ValueText color={record.transactionType === 1 ? 'deposit' : 'withdraw'}>
+            {value}
+          </ValueText>
+        )}
+        sorter={(a:TransactionsData, b:TransactionsData) => a.valueNumber - b.valueNumber}
+        filters={[
+          {
+            text: 'Entrada',
+            value: 1,
+          },
+          {
+            text: 'Saída',
+            value: 2,
+          },
+        ]}
+        filterMode='tree'
+        filterSearch={true}
+        onFilter={(value: boolean | Key, record: TransactionsData) => record.transactionType === value}
+      />
+      <Column
+        title="Categoria"
+        dataIndex="category"
+        key="category"
+      />
+      <Column
+        title="Data"
+        dataIndex="date"
+        key="date"
+      />
     </TableTransaction>
   );
 }

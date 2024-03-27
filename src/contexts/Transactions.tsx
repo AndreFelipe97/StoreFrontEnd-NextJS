@@ -7,7 +7,7 @@ interface TransactionsData {
   title: string;
   value: number;
   category: string;
-  type: number;
+  transactionType: number;
   date: Date;
 }
 
@@ -48,7 +48,7 @@ function TransactionsProvider({ children }: TransactionsProviderProps) {
     let withdrawValue = 0;
 
     data.forEach((transaction) => {
-      if (transaction.type === 1) {
+      if (transaction.transactionType === 1) {
         depositValue += transaction.value;
       } else {
         withdrawValue += transaction.value;
