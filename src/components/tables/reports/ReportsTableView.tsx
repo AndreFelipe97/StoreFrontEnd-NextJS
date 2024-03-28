@@ -13,6 +13,8 @@ export function ReportsTableView({data}: IReportsTableView) {
         title="Descrição"
         dataIndex="title"
         key="title"
+        sortDirections={['descend', 'ascend']}
+        sorter={(a: TransactionsData, b: TransactionsData) => a.title.localeCompare(b.title)}
       />
       <Column
         title="Valor"
