@@ -1,84 +1,82 @@
 'use client'
-import { Button, Form, type FormProps, Input, Row, Col } from 'antd';
+import { Form } from '@/components/dataEntries/Form/Form';
+import { Input } from '@/components/dataEntries/inputs/Input';
+import { ProductsContext } from '@/contexts/ProductsContext';
+import { Button, Form as FormAntd, Row, Col } from 'antd';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+
 type FieldType = {
-  description: string;
-  price: string;
-  amount: number;
+  title: string;
   brand: string;
+  price: number;
+  amount: number;
   barCode: string;
 };
 
 export default function AddProducts() {
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log('Success:', values);
-  };
-  
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  const { handleSubmit, formState: { errors }, register, control } = useForm<FieldType>();
+
+  const { setDataProduct } = useContext(ProductsContext);
+
+  function onSubmit(data: FieldType) {
+    const productData = {...data, id: Math.floor(Math.random() * 1000)};
+    setDataProduct(productData);
+  }
 
   return (
-    <Form
-      name="basic"
-      layout='vertical'
-      wrapperCol={{ span: 24 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item<FieldType>
-        label="Descrição"
-        name="description"
-        rules={[{ required: true, message: 'Descrição do produto é obrigatoria!' }]}
-      >
-        <Input />
-      </Form.Item>
-
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Input label="Descrição"
+        name="title"
+        rules={[{ required: true, message: 'Descrição do produto é obrigatório!' }]} 
+        control={control}
+        placeholder="Digite a descrição do produto"
+        type="text"
+      />
       <Row gutter={16}>
         <Col xs={24} lg={8}>
-          <Form.Item<FieldType>
-            label="Marca"
+          <Input label="Marca"
             name="brand"
-            rules={[{ required: true, message: 'Marca do produto é obrigatoria!' }]}
-          >
-            <Input />
-          </Form.Item>
+            rules={[{ required: true, message: 'Marca do produto é obrigatório!' }]}
+            control={control}
+            placeholder="Digite a marca do produto"
+            type="text"
+          />
         </Col>
         <Col xs={24} lg={8}>
-          <Form.Item<FieldType>
-            label="Preço"
+          <Input label="Preço"
             name="price"
-            rules={[{ required: true, message: 'Preço do produto é obrigatoria!' }]}
-          >
-            <Input />
-          </Form.Item>
+            rules={[{ required: true, message: 'Preço do produto é obrigatório!' }]}
+            control={control}
+            placeholder="Digite o preço do produto!"
+            type="text"
+          />
         </Col>
         <Col xs={24} lg={8}>
-          <Form.Item<FieldType>
-            label="Quantidade"
+          <Input label="Quantidade"
             name="amount"
-            rules={[{ required: true, message: 'Quantidade do produto é obrigatoria!' }]}
-          >
-            <Input />
-          </Form.Item>
+            rules={[{ required: true, message: 'Quantidade do produto é obrigatório!' }]}
+            control={control}
+            placeholder="Digite a quantidade do produto!"
+            type="text"
+          />
         </Col>
       </Row>
-      <Form.Item<FieldType>
-        label="Código de barras"
+      <Input label="Código de barras"
         name="barCode"
-        rules={[{ required: true, message: 'Código de barras do produto é obrigatorio!' }]}
-      >
-        <Input />
-      </Form.Item>
+        rules={[{ required: true, message: 'Código de barras do produto é obrigatório!' }]}
+        control={control}
+        placeholder="Digite o Código de barras do produto!"
+        type="text"
+      />
 
       <Row justify="end">
         <Col>
-          <Form.Item>
+          <FormAntd.Item>
             <Button type="primary" htmlType="submit" style={{boxShadow: 'none'}}>
               Salvar
             </Button>
-          </Form.Item>
+          </FormAntd.Item>
         </Col>
       </Row>
     </Form>

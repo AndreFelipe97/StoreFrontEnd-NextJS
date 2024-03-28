@@ -9,6 +9,7 @@ import BreadcrumbsProvider from "@/contexts/BreadcrumbsContext";
 import TitleProvider from "@/contexts/TitleContext";
 import LoadingProvider from "@/contexts/LoadingContext";
 import TransactionsProvider from "@/contexts/Transactions";
+import ProductsProvider from "@/contexts/ProductsContext";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '700'] });
 
@@ -32,7 +33,9 @@ export default function RootLayout({
                 <LoadingProvider>
                   <LayoutDefault>
                     <TransactionsProvider>
-                      {children}
+                      <ProductsProvider>
+                        {children}
+                      </ProductsProvider>
                     </TransactionsProvider>
                   </LayoutDefault>
                 </LoadingProvider>

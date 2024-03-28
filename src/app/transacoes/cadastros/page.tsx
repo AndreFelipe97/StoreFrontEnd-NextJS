@@ -2,7 +2,7 @@
 import { Form } from "@/components/dataEntries/Form/Form";
 import { Input } from "@/components/dataEntries/inputs/Input";
 import { RadioButton } from "@/components/dataEntries/radioButton/radioButton";
-import TransactionsProvider, { TransactionsContext } from "@/contexts/Transactions";
+import { TransactionsContext } from "@/contexts/Transactions";
 import { Button, Col, Form as FormAntd, Row } from "antd";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
