@@ -1,40 +1,25 @@
 import { Space, Table } from 'antd';
-import { IProductTable } from './IProductTable';
+import { IProductTableData, IProductsTableView } from './IProductTable';
 import { LinkAction } from './ProductsTableStyles';
 
 const { Column } = Table;
 
-const data: IProductTable[] = [
-  {
-    key: '1',
-    product: 'Arroz',
-    price: '5,50',
-    amount: 10,
-  },
-  {
-    key: '2',
-    product: 'Feijão',
-    price: '7,00',
-    amount: 10,
-  },
-  {
-    key: '3',
-    product: 'Macarrrão',
-    price: '6,00',
-    amount: 10,
-  },
-];
-
-export function ProductsTableView() {
+export function ProductsTableView({ data }: IProductsTableView) {
   return (
     <Table dataSource={data}>
-      <Column title="Produtos" dataIndex="product" key="product" />
+      <Column
+        title="Produtos"
+        dataIndex="title"
+        key="title" 
+        sortDirections={['descend', 'ascend']}
+        sorter={(a: IProductTableData, b: IProductTableData) => a.title.localeCompare(b.title)}
+      />
       <Column title="Preço" dataIndex="price" key="price" />
       <Column title="Quantidade" dataIndex="amount" key="amount" />
       <Column
         title=""
         key="action"
-        render={(_: any, record: IProductTable) => (
+        render={(_: any, record: IProductTableData) => (
           <Space size="middle">
             <LinkAction href='#'>Atualizar</LinkAction>
             <LinkAction href='#'>Deleta</LinkAction>
