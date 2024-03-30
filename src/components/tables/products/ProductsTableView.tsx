@@ -16,16 +16,6 @@ export function ProductsTableView({ data }: IProductsTableView) {
       />
       <Column title="Preço" dataIndex="price" key="price" />
       <Column title="Quantidade" dataIndex="amount" key="amount" />
-      <Column
-        title=""
-        key="action"
-        render={(_: any, record: IProductTableData) => (
-          <Space size="middle">
-            <LinkAction href='#'>Atualizar</LinkAction>
-            <LinkAction href='#'>Deleta</LinkAction>
-          </Space>
-        )}
-      />
     </Table>
   );
 }

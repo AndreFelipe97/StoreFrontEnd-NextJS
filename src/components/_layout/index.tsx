@@ -1,20 +1,16 @@
 "use client"
-import { Breadcrumb, Layout, theme } from "antd";
+import { Layout, theme } from "antd";
 import { ILayout } from "./ILayout";
 import { Sider } from "./sider/Sider";
-import { HeaderView } from "./header/HeaderView";
 import { Breadcrumbs } from "./breadcrumbs/BreadcrumbsView";
 import { FooterView } from "./footer/FooterView";
 import { Header } from "./header/Header";
-import { Loading } from "./loading/LoadingView";
-import { useContext, useEffect, useState } from "react";
-import { LoadingContext } from "@/contexts/LoadingContext";
 
 const { Content } = Layout;
 
 export function LayoutDefault({ children }: ILayout) {
   const {
-    token: { colorBgContainer, borderRadiusLG, colorWhite },
+    token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (

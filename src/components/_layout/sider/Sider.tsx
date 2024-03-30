@@ -4,7 +4,6 @@ import { SiderView } from "./SiderView";
 import { BreadcrumbsContext } from "@/contexts/BreadcrumbsContext";
 import { TitleContext } from "@/contexts/TitleContext";
 import { MenuProps } from "antd";
-import { LoadingContext } from "@/contexts/LoadingContext";
 
 
 export function Sider() {
@@ -12,11 +11,8 @@ export function Sider() {
   const router = useRouter()
   const { setBreadcrumbNameFunction } = useContext(BreadcrumbsContext);
   const { setTitleFunction } = useContext(TitleContext);
-  const { isLoading } = useContext(LoadingContext);
 
   const onClick: MenuProps['onClick'] = (e) => {
-    isLoading(true);
-    console.log('true');
     const keyPath = e.key.toString().split("/").filter((e) => e !== "");
     setTitleFunction(keyPath[keyPath.length - 1].charAt(0).toUpperCase() + keyPath[keyPath.length - 1].slice(1).toLowerCase());
     setBreadcrumbNameFunction(keyPath);

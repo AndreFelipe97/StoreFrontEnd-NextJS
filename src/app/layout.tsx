@@ -7,7 +7,6 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "./globals.css";
 import BreadcrumbsProvider from "@/contexts/BreadcrumbsContext";
 import TitleProvider from "@/contexts/TitleContext";
-import LoadingProvider from "@/contexts/LoadingContext";
 import TransactionsProvider from "@/contexts/Transactions";
 import ProductsProvider from "@/contexts/ProductsContext";
 
@@ -30,15 +29,13 @@ export default function RootLayout({
           <AntdRegistry>
             <TitleProvider>
               <BreadcrumbsProvider>
-                <LoadingProvider>
-                  <LayoutDefault>
-                    <TransactionsProvider>
-                      <ProductsProvider>
-                        {children}
-                      </ProductsProvider>
-                    </TransactionsProvider>
-                  </LayoutDefault>
-                </LoadingProvider>
+                <LayoutDefault>
+                  <TransactionsProvider>
+                    <ProductsProvider>
+                      {children}
+                    </ProductsProvider>
+                  </TransactionsProvider>
+                </LayoutDefault>
               </BreadcrumbsProvider>
             </TitleProvider>
           </AntdRegistry>
