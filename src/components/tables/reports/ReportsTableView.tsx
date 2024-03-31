@@ -6,7 +6,6 @@ import { Key } from 'react';
 const { Column } = Table;
 
 export function ReportsTableView({data}: IReportsTableView) {
-  console.log(data);
   return (
     <TableTransaction dataSource={data}>
       <Column

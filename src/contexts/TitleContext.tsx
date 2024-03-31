@@ -18,7 +18,6 @@ function TitleProvider({ children }: TitleProviderProps) {
 
   useEffect(() => {
     const keyPath = window.location.pathname.split("/").filter((e) => e !== "");
-    console.log();
     if (keyPath.length > 0) {
       setTitle(keyPath[keyPath.length - 1].charAt(0).toUpperCase() + keyPath[keyPath.length - 1].slice(1).toLowerCase());
     } else {

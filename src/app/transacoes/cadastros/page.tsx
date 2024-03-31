@@ -27,7 +27,6 @@ export default function RegisterTransactions() {
       value: Number(data.value.replace(",", "."))
     }
     setDataTransaction(transactionData);
-    console.log(data);
   }
 
   return (

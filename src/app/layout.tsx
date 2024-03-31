@@ -9,6 +9,7 @@ import BreadcrumbsProvider from "@/contexts/BreadcrumbsContext";
 import TitleProvider from "@/contexts/TitleContext";
 import TransactionsProvider from "@/contexts/Transactions";
 import ProductsProvider from "@/contexts/ProductsContext";
+import { GoogleSessionProvider } from "@/Providers/GoogleSessionProvider";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '700'] });
 
@@ -27,17 +28,19 @@ export default function RootLayout({
       <body className={roboto.className}>
         <ConfigProvider theme={themeConfig }>
           <AntdRegistry>
-            <TitleProvider>
-              <BreadcrumbsProvider>
-                <LayoutDefault>
-                  <TransactionsProvider>
-                    <ProductsProvider>
-                      {children}
-                    </ProductsProvider>
-                  </TransactionsProvider>
-                </LayoutDefault>
-              </BreadcrumbsProvider>
-            </TitleProvider>
+            <GoogleSessionProvider>
+              <TitleProvider>
+                <BreadcrumbsProvider>
+                  <LayoutDefault>
+                    <TransactionsProvider>
+                      <ProductsProvider>
+                        {children}
+                      </ProductsProvider>
+                    </TransactionsProvider>
+                  </LayoutDefault>
+                </BreadcrumbsProvider>
+              </TitleProvider>
+            </GoogleSessionProvider>
           </AntdRegistry>
         </ConfigProvider>
       </body>
