@@ -3,14 +3,17 @@ import { signIn, useSession } from "next-auth/react";
 import { GoogleOutlined } from "@ant-design/icons";
 import { LoginButton, LoginContainer, Subtitle, Title, TitleContainer } from "@/styles/LoginPageStyles";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { TitleContext } from "@/contexts/TitleContext";
 
 export default function Home() {
+  const { setTitleFunction } = useContext(TitleContext);
   const {status} = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (status === 'authenticated') {
+      setTitleFunction("Relatórios");
       router.push('/relatorios');
     }
   }, [status]);
